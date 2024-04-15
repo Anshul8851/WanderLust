@@ -1,0 +1,17 @@
+<% layout("/layouts/boillerplate") %>
+<body>
+    <h3>Listing Details:</h3>
+    <ul>
+        <li><%=listData.title%></li>
+        <li><%=listData.description%></li>
+        <li>&#8377;<%=listData.price.toLocaleString("en-IN")%></li>
+        <li><%=listData.location%></li>
+        <li><%=listData.country%></li>
+        <li><%=listData.image%></li>
+    </ul>
+    <a href="/listings/<%=listData._id%>/edit">Edit Details</a>
+    <br/><br/>
+    <form method="POST" action="/listings/<%=listData._id%>?_method=DELETE">
+        <button>Delete</button>
+    </form>
+</body>

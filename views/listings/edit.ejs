@@ -1,0 +1,26 @@
+<% layout("/layouts/boillerplate") %>
+<body>
+    <h1>Enter New Details Of Listing</h1>
+    <form method="POST" action="/listings/<%=list._id%>?_method=PUT">
+        <label for="title" >Title:</label>
+        <input type="text" name="title" id="title" value="<%=list.title%>"/>
+        <br/><br/>
+        <label for="description" >Description:</label><br/><br/>
+        <textarea name="description" id="description"><%=list.description%></textarea>
+        <br/><br/>
+        <label for="country" >Country:</label>
+        <input type="text" name="country" id="country" value="<%=list.country%>"/>
+        <br/><br/>
+        <label for="location" >Location:</label>
+        <input type="text" name="location" id="location" value="<%=list.location%>"/>
+        <br/><br/>
+        <label for="price" >Price:</label>
+        <input type="number" name="price" id="price" value="<%=list.price%>"/>
+        <br/><br/>
+        <label for="image" >Image Url:</label>
+        <input type="text" name="image" id="image" value="<%=list.image%>"/>
+        <br/><br/>
+        <button>Submit Details</button>
+       
+    </form>
+</body>
