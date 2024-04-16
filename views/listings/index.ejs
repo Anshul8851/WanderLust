@@ -1,13 +1,21 @@
 <% layout("/layouts/boillerplate") %>
 <body>
-    <h1>All listings</h1>
+    <!-- <h1>All listings</h1> -->
     <!-- <form method="GET" action="/listings/new">
         <button>Add New Listing</button>
     </form> -->
-    <ul>
+    <div class="row">
         <%for(list of allListings){%>
-            <li><a href="/listings/<%=list._id%>"><%=list.title%></a></li>
+            <div class="card" style="width: 18rem;">
+                <img src="<%=list.image%>" class="card-img-top" alt="Listing_image">
+                <div class="card-body">
+                  <h6 class="card-title"><%=list.title%></h6>
+                  <p>&#8377;<%=list.price.toLocaleString("en-IN")%>/Night</p>
+                  <p class="card-text"><%=list.description%></p>
+                  <a href="/listings/<%=list._id%>" class="btn btn-primary">See Details</a>
+                </div>
+              </div>
+            <!-- <li><a href="/listings/<%=list._id%>"><%=list.title%></a></li> -->
         <%}%>
-    </ul>
-    
+    </div>
 </body>
