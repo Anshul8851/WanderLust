@@ -1,17 +1,27 @@
 <% layout("/layouts/boillerplate") %>
 <body>
-    <h3>Listing Details:</h3>
-    <ul>
-        <li><%=listData.title%></li>
-        <li><%=listData.description%></li>
-        <li>&#8377;<%=listData.price.toLocaleString("en-IN")%></li>
-        <li><%=listData.location%></li>
-        <li><%=listData.country%></li>
-        <li><%=listData.image%></li>
-    </ul>
-    <a href="/listings/<%=listData._id%>/edit">Edit Details</a>
-    <br/><br/>
-    <form method="POST" action="/listings/<%=listData._id%>?_method=DELETE">
-        <button>Delete</button>
-    </form>
+   
+
+    <div class="row">
+        <div class="card col-6 offset-3">
+            <h3>Listing Details:</h3>
+            <img src="<%=listData.image%>" class="card-img-top show-img" alt="Listing_Image">
+            <div class="card-body">
+              <b><%=listData.title%></b>
+              <p><i><%=listData.description%></i></p>
+              <b><p>Price:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8377;<%=listData.price.toLocaleString("en-IN")%></p></b>
+              <b><p>Location: <%=listData.location%></p></b>
+              <b><p>Country: <%=listData.country%></p></b>
+            </div>
+        </div>
+    </div>
+
+    <div class="row offset-3 mb-3">
+        <a href="/listings/<%=listData._id%>/edit" class="btn btn-primary col-3 col-md-1">Edit</a>
+    
+        <form method="POST" class="col-7"  action="/listings/<%=listData._id%>?_method=DELETE">
+            <button class=" btn btn-primary">Delete</button>
+        </form>
+    </div>
+    
 </body>

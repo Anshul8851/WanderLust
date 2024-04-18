@@ -79,3 +79,7 @@ footer{
 .btn:hover{
     background-color: #ff1626 !important ;
 }
+
+.show-img{
+    height: 33vh;
+}
