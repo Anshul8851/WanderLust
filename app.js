@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const {listingSchema,reviewSchema} = require("./schema.js");
-
+const router = require("./Routes/listing.js")
 const url = "mongodb+srv://anshulsharma8882:bhardwaj90@cluster0.a0ubw0b.mongodb.net/";
 
 app.use(express.urlencoded({extended:true}));
@@ -25,18 +25,13 @@ catch((err)=>{
 async function main(){
     await mongoose.connect(url);
 } 
-app.set("views",path.join(__dirname,"views"));
+
 app.set("view engine","ejs");
 app.engine("ejs",ejsmate);
+app.set("views",path.join(__dirname,"views"));
 
-const validateListing = (req,res,next)=>{
-    let{error} = listingSchema.validate(req.body);
-    if(error){
-        throw new ExpressError(404,error);
-    }else{
-        next();
-    }
-}
+
+
 
 const validateReview = (req,res,next)=>{
     let{error} = reviewSchema.validate(req.body);
@@ -47,40 +42,15 @@ const validateReview = (req,res,next)=>{
     }
 }
 
-app.get("/listings/:id/edit",wrapAsync(async(req,res)=>{
-    let {id} = req.params;
-    const list = await Listing.findById(id);
-    res.render("listings/edit.ejs",{list});
-}))
-app.get("/listings",wrapAsync(async(req,res)=>{
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs",{allListings});
-}))
-app.get("/listings/new",(req,res)=>{
-    res.render("listings/new.ejs");
-})
-app.get("/listings/:id",wrapAsync(async(req,res)=>{
-    let {id} = req.params;
-    let listData = await Listing.findById(id);
-    res.render("listings/show.ejs",{listData});
-}))
-app.post("/listings",validateListing,wrapAsync(async(req,res)=>{
-    const newList = new Listing(req.body); 
-    await newList.save();
-    res.redirect("/listings");
-}))
-app.put("/listings/:id",validateListing,wrapAsync(async(req,res)=>{
-   
-    let {id} = req.params; 
-    await Listing.findByIdAndUpdate(id,{...req.body});
-    res.redirect(`/listings/${id}`);
-}))
-app.delete("/listings/:id",wrapAsync(async(req,res)=>{
-    let {id} = req.params;
-    const deletedListing = await Listing.findByIdAndDelete(id);
-    // console.log(deletedListing);
-    res.redirect("/listings");
-}))
+app.use("/listings",router);
+// const validateListing = (req,res,next)=>{
+//     let{error} = listingSchema.validate(req.body);
+//     if(error){
+//         throw new ExpressError(404,error);
+//     }else{
+//         next();
+//     }
+// }
 
 app.post("/listings/:id/reviews",validateReview,wrapAsync(async(req,res)=>{
     let id = req.params.id;
@@ -93,6 +63,15 @@ app.post("/listings/:id/reviews",validateReview,wrapAsync(async(req,res)=>{
     await list.save();
     res.redirect(`/listings/${id}`)
 }));
+
+app.delete("/listings/:id/reviews/:reviewId",wrapAsync(async(req,res)=>{
+    let id = req.params.id;
+    let reviewId = req.params.reviewId;
+    await Listing.findByIdAndUpdate(id,{$pull: {reviews: reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
+
+}))
 
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"page not found"));
