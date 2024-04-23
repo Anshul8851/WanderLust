@@ -6,10 +6,11 @@ const methodoverride = require("method-override");
 app.use(methodoverride("_method"));
 app.use(express.static(path.join(__dirname,"/public")));
 const Listing = require("./models/listing.js")
+const Review = require("./models/review.js");
 const mongoose = require("mongoose");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const listingSchema = require("./schema.js");
+const {listingSchema,reviewSchema} = require("./schema.js");
 
 const url = "mongodb+srv://anshulsharma8882:bhardwaj90@cluster0.a0ubw0b.mongodb.net/";
 
@@ -30,6 +31,15 @@ app.engine("ejs",ejsmate);
 
 const validateListing = (req,res,next)=>{
     let{error} = listingSchema.validate(req.body);
+    if(error){
+        throw new ExpressError(404,error);
+    }else{
+        next();
+    }
+}
+
+const validateReview = (req,res,next)=>{
+    let{error} = reviewSchema.validate(req.body);
     if(error){
         throw new ExpressError(404,error);
     }else{
@@ -72,9 +82,23 @@ app.delete("/listings/:id",wrapAsync(async(req,res)=>{
     res.redirect("/listings");
 }))
 
+app.post("/listings/:id/reviews",validateReview,wrapAsync(async(req,res)=>{
+    let id = req.params.id;
+  
+    let list = await Listing.findById(id);
+    
+    let newReview = new Review(req.body); 
+    list.reviews.push(newReview);
+    await newReview.save();
+    await list.save();
+    res.redirect(`/listings/${id}`)
+}));
+
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"page not found"));
 })
+
+
 
 app.use((err,req,res,next)=>{
     let{statusCode = 500,message} = err;
