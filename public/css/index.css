@@ -76,7 +76,7 @@ footer{
     opacity: 0.2;
     background-color: white; 
 }*/
-.btn:hover{
+.btn-hover:hover{
     background-color: #ff1626 !important ;
 }
 

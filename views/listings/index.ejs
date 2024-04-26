@@ -4,7 +4,9 @@
     <!-- <form method="GET" action="/listings/new">
         <button>Add New Listing</button>
     </form> -->
+ 
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+        
         <%for(list of allListings){%>
             <div class="card listing-card col" >
                 
@@ -14,7 +16,7 @@
                   <h6 class="card-title"><%=list.title%></h6>
                   <p>&#8377;<%=list.price.toLocaleString("en-IN")%>/Night</p>
                   <!-- <p class="card-text"><%=list.description%></p> -->
-                  <a href="/listings/<%=list._id%>" class="btn btn-primary">See Details</a>
+                  <a href="/listings/<%=list._id%>" class="btn btn-hover btn-primary">See Details</a>
                 </div>
               </div>
             <!-- <li><a href="/listings/<%=list._id%>"><%=list.title%></a></li> -->

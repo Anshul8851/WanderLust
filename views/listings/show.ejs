@@ -17,10 +17,10 @@
     </div>
 
     <div class="row offset-2 offset-md-3 mb-3">
-        <a href="/listings/<%=listData._id%>/edit" class="btn btn-primary col-3 col-md-1">Edit</a>
+        <a href="/listings/<%=listData._id%>/edit" class="btn btn-primary btn-hover col-3 col-md-1">Edit</a>
     
         <form method="POST" class="col-7"  action="/listings/<%=listData._id%>?_method=DELETE">
-            <button class=" btn btn-primary">Delete</button>
+            <button class=" btn btn-hover btn-primary">Delete</button>
         </form>
     </div>
     <div class="row offset-2 offset-md-3 col-9 col-md-7 mt-3 mb-3">
@@ -37,7 +37,7 @@
                 <div class="valid-feedback">Looks Good</div>
             </div>
             <br/>
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-hover btn-primary">Submit</button>
         </form>
         <!-- <hr/> -->
         <p class="mt-3"><b>All Reviews</b></p>
@@ -50,7 +50,7 @@
                         <p class="card-text"><%=review.comment%></p>
                         <p class="card-text"><%=review.rating%> star</p>
                         <form class="mb-2" method="POST" action="/listings/<%=listData._id%>/reviews/<%=review._id%>?_method=DELETE">
-                            <button class="btn btn-sm btn-primary">Delete</button>
+                            <button class="btn btn-hover btn-sm btn-primary">Delete</button>
                         </form>
                     </div>
                 </div>
