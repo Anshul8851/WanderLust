@@ -83,3 +83,26 @@ footer{
 .show-img{
     height: 33vh;
 }
+
+.nav-link:hover{
+    color: #f9303e !important ;
+}
+.container-fluid{
+    background-color: white !important;
+}
+
+.search{
+    border-radius: 50px;
+    padding: 0.7rem;
+}
+.search-btn{
+    border-radius: 25px;
+    background-color: #fe424d;
+    color: white;
+}
+.search-btn:hover{
+    border-radius: 25px;
+    background-color: #fe424d;
+    color: white;
+}
+
