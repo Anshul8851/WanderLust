@@ -106,3 +106,28 @@ footer{
     color: white;
 }
 
+    #filters{
+        display: flex;
+        justify-content: space-between;
+        width: 600px;
+        overflow-x: auto;
+        /* overflow-y: hidden; */
+        margin: auto ;
+        /* margin-top: rem; */
+    }
+    .filter{
+        text-decoration: none;
+        color: black;
+        text-align: center;
+        opacity: 0.8;
+        /* margin-left: 1rem; */
+    }
+    .filter:hover{
+        text-align: center;
+        opacity: 1;
+        cursor: pointer;
+        color:#fe424d ;
+        /* margin-left: 1rem; */
+    }
+   
+

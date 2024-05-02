@@ -1,60 +1,38 @@
 <% layout("/layouts/boillerplate") %>
-<style>
-    #filters{
-        display: flex;
-        justify-content: space-between;
-        width: 600px;
-        margin: auto ;
-        /* margin-top: rem; */
-    }
-    .filter{
-        text-decoration: none;
-        color: black;
-        text-align: center;
-        opacity: 0.8;
-        /* margin-left: 1rem; */
-    }
-    .filter:hover{
-        text-align: center;
-        opacity: 1;
-        cursor: pointer;
-        color:#fe424d ;
-        /* margin-left: 1rem; */
-    }
-</style>
+
 <body>
     <!-- <h1>All listings</h1> -->
     <!-- <form method="GET" action="/listings/new">
         <button>Add New Listing</button>
     </form> -->
-    <div id="filters" >
-        <a href="/listings/Trendings" class="filter" id="trendind">
+    <div id="filters">
+        <a href="/listings/Trendings" class="filter d-none d-md-inline" id="trendind">
             <i class="fa-solid fa-fire"></i>
             <p>Trending</p>
         </a>
-        <a href="/listings/Rooms" class="filter">
+        <a href="/listings/Rooms" class="filter d-none d-md-inline">
             <i class="fa-solid fa-bed"></i>
             <p>Rooms</p>
         </a>
-        <a href="/listings/IconicCities" class="filter">
+        <a href="/listings/IconicCities" class="filter d-none d-md-inline">
             <i class="fa-solid fa-mountain-city"></i>
             <p>Iconic Cities</p>
         </a>
-        <a href="/listings/Mountain" class="filter">
+        <a href="/listings/Mountain" class="filter d-none d-md-inline">
             <i class="fa-solid fa-mountain"></i>
             <p>Mountain</p>
         </a>
-        <a href="/listings/Castles" class="filter">
+        <a href="/listings/Castles" class="filter d-none d-md-inline">
             <i class="fa-brands fa-fort-awesome-alt"></i>
             <p>Castles</p>
         </a>
-        <a href="/listings/Amazingpools" class="filter">
+        <a href="/listings/Amazingpools" class="filter d-none d-md-inline">
             <i class="fa-solid fa-person-swimming"></i>
             <p>Amazing pools</p>
         </a>
         
     </div>
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ">
+    <div class=" row row-cols-lg-3 row-cols-md-2 row-cols-sm-1     ">
         
         <%for(list of allListings){%>
             <div class="card listing-card col" >
